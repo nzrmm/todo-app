@@ -17,27 +17,36 @@
                         </svg>
                     </button>
                 </div>
-
-                <div class="w-full overflow-x-auto">
-                    <table class="table-fixed shadow lg:w-full">
+                
+                <div v-if="tasks.length > 0" class="w-full overflow-x-auto">
+                    <table class="mb-4 table-fixed shadow-lg lg:w-full">
                         <thead>
                             <tr>
-                                <th class="w-6/12 text-left border border-gray-300 py-3 px-4 text-gray-700">Task</th>
-                                <th class="w-4/12 text-left border border-gray-300 py-3 px-4 text-gray-700">Status</th>
-                                <th class="w-1/12 border border-gray-300 py-3 px-4 text-gray-700">#</th>
-                                <th class="w-1/12 border border-gray-300 py-3 px-4 text-gray-700">#</th>
+                                <th class="w-6/12 text-left column-style">Task</th>
+                                <th class="w-4/12 text-left column-style">Status</th>
+                                <th class="w-1/12 column-style">#</th>
+                                <th class="w-1/12 column-style">#</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(task, index) in tasks" :key="index">
-                                <td class="whitespace-nowrap border border-gray-300 py-3 px-4 text-gray-700">{{ task.task }}</td>
-                                <td class="whitespace-nowrap border border-gray-300 py-3 px-4 text-gray-700">
-                                    <span @click="changeStatus(index)"
-                                        class="bg-teal-500 text-white text-sm rounded-xl cursor-pointer px-3 py-1">{{ task.status }}</span>
+                            <tr v-for="(task, index) in tasks" :key="index" class="hover:bg-gray-100">
+                                <td class="whitespace-nowrap column-style">
+                                    <span :class="{'line-through' : task.status === 'Finished'}">{{ task.task }}</span>
                                 </td>
-                                <td class="border border-gray-300 py-3 px-4 text-gray-700">
-                                    <div @click="editTask(index)" class="cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500"
+                                <td class="whitespace-nowrap column-style">
+                                    <span @click="changeStatus(index)"
+                                        class="text-white text-sm rounded-xl cursor-pointer px-3 py-1" 
+                                        :class="{
+                                            'bg-rose-500' : task.status === 'To-do',
+                                            'bg-amber-500' : task.status === 'Progress',
+                                            'bg-teal-500' : task.status === 'Finished'
+                                        }">
+                                        {{ task.status }}
+                                    </span>
+                                </td>
+                                <td class="column-style">
+                                    <div @click="editTask(index)" class="cursor-pointer flex justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500"
                                             viewBox="0 0 20 20" fill="currentColor">
                                             <path
                                                 d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -47,9 +56,9 @@
                                         </svg>
                                     </div>
                                 </td>
-                                <td class="border border-gray-300 py-3 px-4 text-gray-700">
-                                    <div @click="deleteTask(index)" class="cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500"
+                                <td class="column-style">
+                                    <div @click="deleteTask(index)" class="cursor-pointer flex justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-rose-500"
                                             viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd"
                                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -60,6 +69,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="text-center">
+                        <span class="text-gray-400 text-sm">*click status to complete your task</span>
+                    </div>
+                </div>
+                <div v-else class="py-2 bg-rose-500 rounded-lg text-white w-full text-center">
+                    No todo added
                 </div>
             </div>
         </div>
@@ -73,7 +88,7 @@
             return {
                 task: '',
                 editedTask: null,
-                availableStatus : ['To-do', 'Progrees', 'Finished'],
+                availableStatus : ['To-do', 'Progress', 'Finished'],
                 tasks: [{
                         task: 'First task with vue js',
                         status: 'To-do'
@@ -87,14 +102,19 @@
         },
         methods: {
             addTask() {
-                if (this.editedTask === null) {
-                    this.tasks.push({
-                        task: this.task,
-                        status: 'to-do'
-                    })
+                if(this.task === '') {
+                    return false
                 } else {
-                    this.tasks[this.editedTask].task = this.task;
+                    if (this.editedTask === null) {
+                        this.tasks.push({
+                        task: this.task,
+                        status: 'To-do'
+                    })
+                    } else {
+                        this.tasks[this.editedTask].task = this.task;
+                    }
                 }
+                
 
 
                 this.task = '';
@@ -116,5 +136,7 @@
 </script>
 
 <style scoped>
-
+    .column-style {
+        @apply border border-gray-300 py-3 px-4 text-gray-700;
+    }
 </style>
