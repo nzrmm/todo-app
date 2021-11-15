@@ -19,21 +19,21 @@
                 </div>
                 
                 <div v-if="tasks.length > 0" class="w-full overflow-x-auto">
-                    <table class="mb-4 table-fixed shadow-lg lg:w-full">
+                    <table class="mb-4 table-fixed shadow-lg w-96 sm:w-full">
                         <thead>
                             <tr>
-                                <th class="w-6/12 text-left column-style">Task</th>
-                                <th class="w-4/12 text-left column-style">Status</th>
-                                <th class="w-1/12 column-style">#</th>
-                                <th class="w-1/12 column-style">#</th>
+                                <th class="w-80 sm:w-8/12 text-left column-style">Task</th>
+                                <th class="w-40 sm:w-4/12 text-left column-style">Status</th>
+                                <th class="w-20 column-style">#</th>
+                                <th class="w-20 column-style">#</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(task, index) in tasks" :key="index" class="hover:bg-gray-100">
-                                <td class="whitespace-nowrap column-style">
-                                    <span :class="{'line-through' : task.status === 'Finished'}">{{ task.task }}</span>
+                                <td class="column-style">
+                                    <span class="leading-relaxed" :class="{'line-through' : task.status === 'Finished'}">{{ task.task }}</span>
                                 </td>
-                                <td class="whitespace-nowrap column-style">
+                                <td class="column-style">
                                     <span @click="changeStatus(index)"
                                         class="text-white text-sm rounded-xl cursor-pointer px-3 py-1" 
                                         :class="{
