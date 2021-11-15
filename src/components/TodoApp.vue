@@ -1,12 +1,12 @@
 <template>
-    <main class="antialiased h-screen bg-gray-100 flex justify-center items-center">
-        <div class="lg:w-7/12 sm:w-8/12">
-            <div class="px-10 py-6 bg-white shadow-lg rounded-xl">
+    <main class="antialiased min-h-screen bg-gray-100 flex justify-center py-20">
+        <div class="w-10/12 sm:w-10/12 md:w-8/12 lg:w-7/12">
+            <div class="px-10 py-6 bg-white shadow-lg rounded-xl sm:overflow-x-auto">
                 <h1 class="mb-8 text-2xl font-bold text-center">Todo List Vue JS</h1>
 
-                <div class="mb-5 mx-auto w-8/12 flex items-center relative">
+                <div class="mb-5 mx-auto w-full sm:w-8/12 flex items-center relative">
                     <input type="text" v-model="task"
-                        class="px-6 py-3 bg-gray-100 text-gray-800 w-full rounded-xl outline-none focus:ring-2 ring-gray-200"
+                        class="px-6 py-3 pr-16 bg-gray-100 text-gray-800 w-full rounded-xl outline-none focus:ring-2 ring-gray-200"
                         placeholder="Enter task !">
                     <button @click="addTask"
                         class="p-2 m-2  bg-teal-500 text-white rounded-xl shadow-lg focus:ring-2 ring-teal-100 absolute right-0">
@@ -18,20 +18,20 @@
                     </button>
                 </div>
 
-                <div class="w-full sm:overflow-x-auto">
-                    <table class="w-full shadow">
+                <div class="w-full overflow-x-auto">
+                    <table class="table-fixed shadow lg:w-full">
                         <thead>
                             <tr>
-                                <th class="text-left border border-gray-300 py-3 px-4 text-gray-700">Task</th>
-                                <th class="text-left border border-gray-300 py-3 px-4 text-gray-700">Status</th>
-                                <th class="border border-gray-300 py-3 px-4 text-gray-700">#</th>
-                                <th class="border border-gray-300 py-3 px-4 text-gray-700">#</th>
+                                <th class="w-6/12 text-left border border-gray-300 py-3 px-4 text-gray-700">Task</th>
+                                <th class="w-4/12 text-left border border-gray-300 py-3 px-4 text-gray-700">Status</th>
+                                <th class="w-1/12 border border-gray-300 py-3 px-4 text-gray-700">#</th>
+                                <th class="w-1/12 border border-gray-300 py-3 px-4 text-gray-700">#</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(task, index) in tasks" :key="index">
-                                <td class="border border-gray-300 py-3 px-4 text-gray-700">{{ task.task }}</td>
-                                <td class="border border-gray-300 py-3 px-4 text-gray-700">
+                                <td class="whitespace-nowrap border border-gray-300 py-3 px-4 text-gray-700">{{ task.task }}</td>
+                                <td class="whitespace-nowrap border border-gray-300 py-3 px-4 text-gray-700">
                                     <span @click="changeStatus(index)"
                                         class="bg-teal-500 text-white text-sm rounded-xl cursor-pointer px-3 py-1">{{ task.status }}</span>
                                 </td>
