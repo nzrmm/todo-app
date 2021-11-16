@@ -1,15 +1,15 @@
 <template>
-    <main class="antialiased min-h-screen bg-gray-100 flex justify-center py-20">
+    <main class="antialiased min-h-screen bg-gray-100 dark:bg-gray-800 flex justify-center py-20">
         <div class="w-11/12 sm:w-10/12 md:w-8/12 lg:w-7/12">
-            <div class="px-6 sm:px-10 py-6 bg-white shadow-lg rounded-xl sm:overflow-x-auto">
-                <h1 class="mb-8 text-2xl font-bold text-center">Todo List Vue JS</h1>
+            <div class="px-6 sm:px-10 py-6 bg-white dark:bg-gray-900 shadow-lg rounded-xl sm:overflow-x-auto">
+                <h1 class="mb-8 dark:text-white text-2xl font-bold text-center">Todo List Vue JS</h1>
 
                 <div class="mb-5 mx-auto w-full sm:w-8/12 flex items-center relative">
                     <input type="text" v-model="task"
-                        class="px-6 py-3 pr-16 bg-gray-100 text-gray-800 w-full rounded-xl outline-none focus:ring-2 ring-gray-200"
+                        class="px-6 py-3 pr-16 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white w-full rounded-xl outline-none focus:ring-2 ring-gray-200 dark:ring-gray-500"
                         placeholder="Enter task !">
                     <button @click="addTask"
-                        class="p-2 m-2  bg-teal-500 text-white rounded-xl shadow-lg focus:ring-2 ring-teal-100 absolute right-0">
+                        class="p-2 m-2  bg-teal-500 text-white rounded-xl shadow-lg focus:ring-2 ring-teal-100 dark:ring-teal-300 absolute right-0">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -29,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(task, index) in tasks" :key="index" class="hover:bg-gray-100">
+                            <tr v-for="(task, index) in tasks" :key="index" class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <td class="column-style">
                                     <span class="leading-relaxed" :class="{'line-through' : task.status === 'Finished'}">{{ task.task }}</span>
                                 </td>
@@ -73,8 +73,10 @@
                         <span class="text-gray-400 text-sm">*click status to complete your task</span>
                     </div>
                 </div>
-                <div v-else class="py-2 bg-rose-500 rounded-lg text-white w-full text-center">
-                    No todo added
+                <div v-else class="flex justify-center">
+                    <div class="py-2 w-80 text-center rounded-lg bg-rose-500 text-white">
+                        No todo added
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,11 +92,11 @@
                 editedTask: null,
                 availableStatus : ['To-do', 'Progress', 'Finished'],
                 tasks: [{
-                        task: 'First task with vue js',
+                        task: 'I love you',
                         status: 'To-do'
                     },
                     {
-                        task: 'Second task with vue js',
+                        task: 'Sorry :)',
                         status: 'To-do'
                     }
                 ]
@@ -137,6 +139,6 @@
 
 <style scoped>
     .column-style {
-        @apply border border-gray-300 py-3 px-4 text-gray-700;
+        @apply py-3 px-4 border border-gray-300 dark:border-gray-500 text-gray-700 dark:text-white;
     }
 </style>
