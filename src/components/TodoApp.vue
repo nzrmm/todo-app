@@ -2,7 +2,7 @@
     <main class="antialiased min-h-screen bg-gray-100 dark:bg-gray-800 flex justify-center py-20">
         <div class="w-11/12 sm:w-10/12 md:w-8/12 lg:w-7/12">
             <div class="px-6 sm:px-10 py-6 bg-white dark:bg-gray-900 shadow-lg rounded-xl sm:overflow-x-auto">
-                <h1 class="mb-8 dark:text-white text-2xl font-bold text-center">Todo List Vue JS</h1>
+                <h1 class="mb-8 dark:text-white text-2xl font-bold text-center">Todo List</h1>
 
                 <div class="mb-5 mx-auto w-full sm:w-8/12 flex items-center relative">
                     <input type="text" v-model="task"
