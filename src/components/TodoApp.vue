@@ -1,7 +1,7 @@
 <template>
     <main class="antialiased min-h-screen bg-gray-100 flex justify-center py-20">
-        <div class="w-10/12 sm:w-10/12 md:w-8/12 lg:w-7/12">
-            <div class="px-10 py-6 bg-white shadow-lg rounded-xl sm:overflow-x-auto">
+        <div class="w-11/12 sm:w-10/12 md:w-8/12 lg:w-7/12">
+            <div class="px-6 sm:px-10 py-6 bg-white shadow-lg rounded-xl sm:overflow-x-auto">
                 <h1 class="mb-8 text-2xl font-bold text-center">Todo List Vue JS</h1>
 
                 <div class="mb-5 mx-auto w-full sm:w-8/12 flex items-center relative">
@@ -19,10 +19,10 @@
                 </div>
                 
                 <div v-if="tasks.length > 0" class="w-full overflow-x-auto">
-                    <table class="mb-4 table-fixed shadow-lg w-96 sm:w-full">
+                    <table class="mb-4 table-fixed w-96 sm:w-full">
                         <thead>
                             <tr>
-                                <th class="w-80 sm:w-8/12 text-left column-style">Task</th>
+                                <th class="w-72 sm:w-8/12 text-left column-style">Task</th>
                                 <th class="w-40 sm:w-4/12 text-left column-style">Status</th>
                                 <th class="w-20 column-style">#</th>
                                 <th class="w-20 column-style">#</th>
@@ -69,7 +69,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-center">
+                    <div class="text-center mb-4">
                         <span class="text-gray-400 text-sm">*click status to complete your task</span>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                         status: 'To-do'
                     },
                     {
-                        task: 'Seconda task with vue js',
+                        task: 'Second task with vue js',
                         status: 'To-do'
                     }
                 ]
